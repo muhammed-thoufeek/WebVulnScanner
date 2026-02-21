@@ -1,127 +1,171 @@
-# 🔎 WebVulnScanner
+# 🚀 WebVulnScanner v2.0
 
-A basic Python-based Web Vulnerability Scanner built for educational and authorized security testing purposes.
+A Python-based educational web vulnerability scanner that performs:
+
+- SQL Injection Detection (Form-based)
+- XSS Detection (Basic reflection)
+- Sensitive File Checking
+- Severity Classification
+- HTML Report Generation
+- Progress Bar Tracking
 
 ---
 
 ## ⚠️ Disclaimer
 
-This tool is created for:
+This tool is created strictly for:
 
 - Educational purposes
-- Testing websites you own
+- Testing applications you own
 - Authorized security testing only
 
-Do NOT use this tool on websites without permission. Unauthorized scanning may be illegal.
+Do NOT use this tool on websites without permission.
 
 ---
 
-## 🚀 Features
+# 📥 Installation
 
-- 🔗 Website Link Crawling
-- 🛠 SQL Injection Detection (Basic)
-- ⚡ Cross-Site Scripting (XSS) Detection (Basic)
-- 📊 Simple Report Generation
-- 🐍 Built using Python
+## 1️⃣ Clone the Repository
 
----
-
-## 🏗 Project Structure
-
-```
-WebVulnScanner/
-│
-├── main.py
-├── crawler.py
-├── sqli.py
-├── xss.py
-├── report.py
-├── requirements.txt
-└── README.md
-```
-
----
-
-## 🧠 How It Works
-
-1. Takes a target URL
-2. Crawls all links from the page
-3. Tests each link for:
-   - SQL Injection patterns
-   - Reflected XSS patterns
-4. Displays possible vulnerabilities
-
----
-
-## ⚙️ Installation
-
-### 1️⃣ Clone the Repository
+Using SSH:
 
 ```bash
 git clone git@github.com:thoufeektr30-create/WebVulnScanner.git
 cd WebVulnScanner
 ```
 
-### 2️⃣ Create Virtual Environment
+Or using HTTPS:
+
+```bash
+git clone https://github.com/thoufeektr30-create/WebVulnScanner.git
+cd WebVulnScanner
+```
+
+---
+
+## 2️⃣ Create Virtual Environment
 
 ```bash
 python -m venv venv
 source venv/bin/activate
 ```
 
-### 3️⃣ Install Dependencies
+---
+
+## 3️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
+pip install tqdm
 ```
 
 ---
 
-## ▶️ Usage
+# ▶️ Usage
 
 Run the scanner:
 
 ```bash
-python main.py
+python main.py --target http://testphp.vulnweb.com
 ```
-
-Enter the target URL when prompted.
 
 Example:
 
+```bash
+python main.py --target http://localhost/dvwa
 ```
-Enter target URL: http://example.com
+
+---
+
+# 📊 Example Output
+
+```
+Collecting links...
+
+Total URLs to scan: 25
+
+Starting scan...
+
+Scanning: 100%|████████████████████| 25/25
+
+===== Scan Summary =====
+Total forms tested: 12
+SQL Injection found: 2
+XSS found: 1
+
+Report saved as report_20260221_223015.html
 ```
 
 ---
 
-## 🔐 Technologies Used
+# 📄 HTML Report
 
-- Python 3
-- requests
-- BeautifulSoup4
+After scanning completes, a report file is generated automatically:
 
----
+```
+report_YYYYMMDD_HHMMSS.html
+```
 
-## 📌 Future Improvements
+Open it using:
 
-- Add threading for faster scanning
-- Add form input testing
-- Add CLI arguments (--target)
-- Add JSON & HTML reporting
-- Add severity levels
-- Add logging system
+```bash
+xdg-open report_YYYYMMDD_HHMMSS.html
+```
 
 ---
 
-## 👨‍💻 Author
+# 🧠 Features
+
+- Multi-page crawling
+- Form detection & submission
+- SQL error pattern detection
+- Reflected XSS detection
+- Severity classification (HIGH / MEDIUM)
+- Progress bar using tqdm
+- HTML report generation
+
+---
+
+# 🏗 Project Structure
+
+```
+WebVulnScanner/
+│
+├── main.py
+├── crawler.py
+├── form_scanner.py
+├── detectors/
+│   ├── sqli_detector.py
+│   ├── xss_detector.py
+├── reporting/
+│   ├── reporter.py
+├── utils/
+│   ├── severity.py
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# 🔮 Future Improvements
+
+- Threaded scanning with CLI control
+- JSON report export
+- Logging system
+- Directory brute-force module
+- Security header scanning
+- Rate limiting
+
+---
+
+# 👨‍💻 Author
 
 Thoufeek T R  
 GitHub: https://github.com/thoufeektr30-create
 
 ---
 
-## ⭐ Support
+# ⭐ Support
 
 If you found this project useful:
 
@@ -130,4 +174,4 @@ If you found this project useful:
 - Improve it
 - Contribute
 
-Happy Learning 🚀
+Happy Ethical Hacking 🚀
