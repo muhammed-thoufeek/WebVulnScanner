@@ -1,16 +1,26 @@
+import argparse
+from concurrent.futures import ThreadPoolExecutor
 from crawler import get_links
-from sqli import test_sqli
-from xss import test_xss
+from form_sqli import scan_form_sqli
 
-target = input("Enter target URL: ")
+parser = argparse.ArgumentParser()
+parser.add_argument("--target", required=True)
+args = parser.parse_args()
+
+target = args.target
+
+print("\nCollecting links...\n")
 
 links = get_links(target)
 
-for link in links:
-    print(f"\nScanning: {link}")
+if not links:
+    links = [target]
 
-    if test_sqli(link):
-        print("Possible SQL Injection detected!")
+print(f"Total URLs to scan: {len(links)}")
 
-    if test_xss(link):
-        print("Possible XSS detected!")
+print("\nStarting threaded scan...\n")
+
+with ThreadPoolExecutor(max_workers=5) as executor:
+    executor.map(scan_form_sqli, links)
+
+print("\nScan Completed.")
